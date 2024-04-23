@@ -4,7 +4,7 @@ public class CameraController : MonoBehaviour
 {
     [SerializeField] private float sensibilityX = 5f;
     [SerializeField] private float sensibilityY = 5f;
-    [SerializeField] private Transform orientation;
+    [SerializeField] private Transform cameraTarget;
 
     private float _inputX = 0f;
     private float _inputY = 0f;
@@ -20,9 +20,15 @@ public class CameraController : MonoBehaviour
     private void Update()
     {
         MoveCamera();
+        RotateCamera();
     }
 
     private void MoveCamera()
+    {
+        transform.position = cameraTarget.position;
+    }
+
+    private void RotateCamera()
     {
         float mouseX = _inputX * Time.deltaTime * sensibilityX;
         float mouseY = _inputY * Time.deltaTime * sensibilityY;
@@ -33,7 +39,7 @@ public class CameraController : MonoBehaviour
         _rotationX = Mathf.Clamp(_rotationX, -90f, 90f);
 
         transform.rotation = Quaternion.Euler(_rotationX, _rotationY, 0f);
-        orientation.rotation = Quaternion.Euler(0f, _rotationY, 0f);
+        cameraTarget.rotation = Quaternion.Euler(0f, _rotationY, 0f);
     }
 
     public void SetMouseInput(Vector2 input)
