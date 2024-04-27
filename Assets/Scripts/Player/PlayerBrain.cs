@@ -10,12 +10,14 @@ public class PlayerBrain : MonoBehaviour
     {
         inputReader.OnMovementInput += HandleMovementInput;
         inputReader.OnCameraInput += HandleCameraInput;
+        inputReader.OnJumpInput += HandleJumpInput;
     }
 
     private void OnDisable()
     {
         inputReader.OnMovementInput -= HandleMovementInput;
         inputReader.OnCameraInput -= HandleCameraInput;
+        inputReader.OnJumpInput -= HandleJumpInput;
     }
 
     private void HandleMovementInput(Vector2 input)
@@ -26,5 +28,10 @@ public class PlayerBrain : MonoBehaviour
     private void HandleCameraInput(Vector2 input)
     {
         cameraController.SetMouseInput(input);
+    }
+
+    private void HandleJumpInput()
+    {
+        playerMovement.Jump();
     }
 }

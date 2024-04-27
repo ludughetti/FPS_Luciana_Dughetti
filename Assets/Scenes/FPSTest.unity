@@ -845,6 +845,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 4eb93a8e-c8ae-488f-ad72-78f1dd342b2d
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 592742414}
+        m_TargetAssemblyTypeName: InputReader, Assembly-CSharp
+        m_MethodName: HandleJumpInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 1eecef5a-a140-4641-8de3-f7480f628c52
+    m_ActionName: Player/New action
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -964,7 +980,7 @@ GameObject:
   - component: {fileID: 668918588}
   - component: {fileID: 668918587}
   - component: {fileID: 668918586}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1521,6 +1537,13 @@ MonoBehaviour:
   orientation: {fileID: 42205005}
   characterController: {fileID: 1763042272}
   movementSpeed: 15
+  groundCheckRadius: 0.2
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 64
+  jumpHeight: 5
+  gravity: -15
+  terminalVelocity: 53
 --- !u!114 &1763042270
 MonoBehaviour:
   m_ObjectHideFlags: 0

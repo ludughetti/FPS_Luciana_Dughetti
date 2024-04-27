@@ -6,6 +6,7 @@ public class InputReader : MonoBehaviour
 {
     public event Action<Vector2> OnMovementInput = delegate { };
     public event Action<Vector2> OnCameraInput = delegate { };
+    public event Action OnJumpInput = delegate { };
 
     public void HandleMovementInput(InputAction.CallbackContext context)
     {
@@ -15,5 +16,10 @@ public class InputReader : MonoBehaviour
     public void HandleCameraInput(InputAction.CallbackContext context)
     {
         OnCameraInput.Invoke(context.ReadValue<Vector2>());
+    }
+
+    public void HandleJumpInput(InputAction.CallbackContext context)
+    {
+        OnJumpInput.Invoke();
     }
 }
