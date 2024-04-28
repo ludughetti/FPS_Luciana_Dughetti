@@ -160,7 +160,7 @@ GameObject:
   m_Component:
   - component: {fileID: 233533031}
   - component: {fileID: 233533032}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -743,7 +743,19 @@ MonoBehaviour:
     m_ActionId: 5235fa85-4dd2-42f6-81d7-172ad0ac5245
     m_ActionName: 'Player/Look[/Mouse/delta,/Pen/delta]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 592742414}
+        m_TargetAssemblyTypeName: InputReader, Assembly-CSharp
+        m_MethodName: HandleShootInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 1aac7853-e2cc-4b28-a9fb-ccc7b679c279
     m_ActionName: 'Player/Fire[/Mouse/leftButton]'
   - m_PersistentCalls:
@@ -1370,7 +1382,7 @@ GameObject:
   - component: {fileID: 1628526736}
   - component: {fileID: 1628526735}
   - component: {fileID: 1628526734}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: View
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1597,6 +1609,7 @@ GameObject:
   - component: {fileID: 1763042270}
   - component: {fileID: 1763042269}
   - component: {fileID: 1763042273}
+  - component: {fileID: 1763042274}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1641,6 +1654,7 @@ MonoBehaviour:
   inputReader: {fileID: 592742414}
   playerMovement: {fileID: 1763042269}
   cameraController: {fileID: 508167970}
+  characterCombat: {fileID: 1763042274}
 --- !u!4 &1763042271
 Transform:
   m_ObjectHideFlags: 0
@@ -1697,6 +1711,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+--- !u!114 &1763042274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1763042268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cac441783cf40df4396b4f184f22b12b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target:
+    serializedVersion: 2
+    m_Bits: 128
+  offset: {x: 0, y: 1, z: 0}
 --- !u!1 &2044222775
 GameObject:
   m_ObjectHideFlags: 0
