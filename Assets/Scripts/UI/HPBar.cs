@@ -8,7 +8,6 @@ public class HPBar : SliderBar
     {
         _currentValue = characterHealth.GetCurrentHealth();
         sliderBar.value = _currentValue;
-        text.text = _currentValue.ToString();
     }
 
     private void OnEnable()

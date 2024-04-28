@@ -24,6 +24,7 @@ public class CharacterHealth : MonoBehaviour
 
     public void ReceiveDamage(float damage)
     {
+        Debug.Log($"{name}: {damage} damage received");
         _health -= damage;
 
         if(_health <= 0)
