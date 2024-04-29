@@ -21,11 +21,13 @@ public class InputReader : MonoBehaviour
 
     public void HandleJumpInput(InputAction.CallbackContext context)
     {
-        OnJumpInput.Invoke();
+        if (context.started)
+            OnJumpInput.Invoke();
     }
 
     public void HandleShootInput(InputAction.CallbackContext context)
     {
-        OnShootInput.Invoke();
+        if(context.started)
+            OnShootInput.Invoke();
     }
 }
