@@ -128,7 +128,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 42205005}
-  - component: {fileID: 42205006}
+  - component: {fileID: 42205007}
   m_Layer: 0
   m_Name: Combat
   m_TagString: Untagged
@@ -152,7 +152,7 @@ Transform:
   - {fileID: 1474548462}
   m_Father: {fileID: 1763042271}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &42205006
+--- !u!114 &42205007
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -161,7 +161,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 42205004}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cac441783cf40df4396b4f184f22b12b, type: 3}
+  m_Script: {fileID: 11500000, guid: 80bca88a3939d74478ee4cffa9dc6c87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target:
@@ -1644,8 +1644,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lineRenderer: {fileID: 1172428163}
-  renderDuration: 1
-  renderSpeed: 2
+  renderDuration: 2
 --- !u!120 &1172428163
 LineRenderer:
   serializedVersion: 2
@@ -1720,8 +1719,8 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 1}
+      key0: {r: 1, g: 1, b: 1, a: 0.49019608}
+      key1: {r: 1, g: 1, b: 1, a: 0.49019608}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -2317,6 +2316,7 @@ GameObject:
   - component: {fileID: 1683474017}
   - component: {fileID: 1683474019}
   - component: {fileID: 1683474018}
+  - component: {fileID: 1683474020}
   m_Layer: 0
   m_Name: Crosshair
   m_TagString: Untagged
@@ -2356,14 +2356,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.5882353}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 1ac14454f81d4e24e973ecdad2571094, type: 3}
+  m_Texture: {fileID: 2800000, guid: 193f2237507a0ee47b77ba72850715de, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -2378,6 +2378,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1683474016}
   m_CullTransparentMesh: 1
+--- !u!114 &1683474020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1683474016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad79e437f4f32ce4a808e40504dd67cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCombat: {fileID: 42205007}
+  crosshairIcon: {fileID: 1683474018}
+  normalCrosshair: {r: 0, g: 0, b: 0, a: 0.5882353}
+  atEnemyCrosshair: {r: 0.49019608, g: 0, b: 0, a: 0.5882353}
 --- !u!1 &1763042268
 GameObject:
   m_ObjectHideFlags: 0
@@ -2435,7 +2451,7 @@ MonoBehaviour:
   inputReader: {fileID: 592742414}
   playerMovement: {fileID: 1763042269}
   cameraController: {fileID: 508167970}
-  characterCombat: {fileID: 42205006}
+  characterCombat: {fileID: 42205007}
 --- !u!4 &1763042271
 Transform:
   m_ObjectHideFlags: 0
