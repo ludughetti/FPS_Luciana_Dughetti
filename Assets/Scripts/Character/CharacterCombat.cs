@@ -20,11 +20,6 @@ public class CharacterCombat : MonoBehaviour
         }
     }
 
-    public bool IsPointingAtEnemy()
-    {
-        return Physics.Raycast(transform.position, transform.forward, Mathf.Infinity, target);
-    }
-
     private void DamageEnemy(RaycastHit hit)
     {
         hit.transform.gameObject.GetComponent<CharacterHealth>().TakeDamage(weapon.GetProjectileDamage());

@@ -7,16 +7,19 @@ public class Weapon : MonoBehaviour
     [SerializeField] protected float weaponRange = 10f;
     [SerializeField] protected ProjectileTrace trace;
     [SerializeField] private Transform barrelEnd;
+    [SerializeField] private ParticleSystem smokeEffect;
 
     public Action<Vector3> OnWeaponFired = delegate { };
 
     private void OnEnable()
     {
+        OnWeaponFired += PlaySmokeEffect;
         OnWeaponFired += CreateProjectileTrace;
     }
 
     private void OnDisable()
     {
+        OnWeaponFired -= PlaySmokeEffect;
         OnWeaponFired -= CreateProjectileTrace;
     }
 
@@ -39,5 +42,10 @@ public class Weapon : MonoBehaviour
     {
         ProjectileTrace instanceRenderer = Instantiate(trace, barrelEnd.position, Quaternion.identity);
         instanceRenderer.RenderBulletTrace(hitPosition);
+    }
+
+    private void PlaySmokeEffect(Vector3 hitPosition)
+    {
+        smokeEffect.Play();
     }
 }
