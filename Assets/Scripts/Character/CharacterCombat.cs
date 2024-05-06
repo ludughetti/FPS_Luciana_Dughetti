@@ -11,6 +11,7 @@ public class CharacterCombat : MonoBehaviour
         {
             Debug.DrawRay(transform.position, transform.forward * hit.point.magnitude, Color.yellow, 2);
             weapon.FireWeapon(hit.point);
+            DamageEnemy(hit);
         } 
         else
         {
@@ -22,5 +23,10 @@ public class CharacterCombat : MonoBehaviour
     public bool IsPointingAtEnemy()
     {
         return Physics.Raycast(transform.position, transform.forward, Mathf.Infinity, target);
+    }
+
+    private void DamageEnemy(RaycastHit hit)
+    {
+        hit.transform.gameObject.GetComponent<CharacterHealth>().TakeDamage(weapon.GetProjectileDamage());
     }
 }

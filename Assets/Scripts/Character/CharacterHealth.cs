@@ -10,24 +10,31 @@ public class CharacterHealth : MonoBehaviour
     public event Action OnDeath = delegate { };
 
     private float _health;
+    private string playerTag = "Player";
 
     private void OnEnable()
     {
         _health = maxHealth;
+        OnDeath += RemoveCharacterOnDeath;
+    }
+
+    private void OnDisable()
+    {
+        OnDeath -= RemoveCharacterOnDeath;
     }
 
     [ContextMenu("TakeDamage")]
     public void MockTakeDamage()
     {
-        ReceiveDamage(10f);
+        TakeDamage(10f);
     }
 
-    public void ReceiveDamage(float damage)
+    public void TakeDamage(float damage)
     {
         Debug.Log($"{name}: {damage} damage received");
         _health -= damage;
 
-        if(_health <= 0)
+        if (_health <= 0)
             OnDeath.Invoke();
         else
             OnDamageTaken.Invoke(damage);
@@ -41,5 +48,13 @@ public class CharacterHealth : MonoBehaviour
     public float GetMaxHealth()
     {
         return maxHealth;
+    }
+
+    private void RemoveCharacterOnDeath()
+    {
+        Debug.Log($"{name}: Character dead");
+
+        if(!playerTag.Equals(gameObject.tag))
+            Destroy(gameObject);
     }
 }

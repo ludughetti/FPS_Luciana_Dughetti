@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class BulletTrace : MonoBehaviour
+public class ProjectileTrace : MonoBehaviour
 {
     [SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private float renderDuration = 1f;
