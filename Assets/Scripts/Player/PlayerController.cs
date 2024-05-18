@@ -45,7 +45,9 @@ public class PlayerController : MonoBehaviour
 
     private void IsGrounded()
     {
-        _isGrounded = Physics.CheckSphere(transform.position, groundCheckRadius, groundMask);
+        Vector3 groundCheckPosition = transform.position - new Vector3(0f, characterController.height / 2);
+        _isGrounded = Physics.CheckSphere(groundCheckPosition, groundCheckRadius, groundMask);
+        Debug.Log($"isGrounded is {_isGrounded}");
     }
 
     private void ApplyPhysics()
@@ -53,5 +55,10 @@ public class PlayerController : MonoBehaviour
         // Apply gravity if player is in the air
         if (!_isGrounded && _verticalVelocity < terminalVelocity) 
             _verticalVelocity += gravity * Time.deltaTime;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, groundCheckRadius);
     }
 }

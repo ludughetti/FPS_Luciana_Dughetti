@@ -3,27 +3,13 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    [SerializeField] protected float projectileDamage = 20f;
+    [SerializeField] protected float weaponDamage = 20f;
     [SerializeField] protected float weaponRange = 10f;
     [SerializeField] protected float weaponCooldown = 1f;
-    [SerializeField] protected ProjectileTrace trace;
-    [SerializeField] private Transform barrelEnd;
-    [SerializeField] private ParticleSystem smokeEffect;
 
-    public Action<Vector3> OnWeaponFired = delegate { };
+    public Action<Vector3> OnWeaponAttack = delegate { };
 
-    private float _currentWeaponCooldown = 0f;
-    private void OnEnable()
-    {
-        OnWeaponFired += PlaySmokeEffect;
-        OnWeaponFired += CreateProjectileTrace;
-    }
-
-    private void OnDisable()
-    {
-        OnWeaponFired -= PlaySmokeEffect;
-        OnWeaponFired -= CreateProjectileTrace;
-    }
+    protected float _currentWeaponCooldown = 0f;
 
     private void Update()
     {
@@ -31,20 +17,14 @@ public class Weapon : MonoBehaviour
             _currentWeaponCooldown -= Time.deltaTime;
     }
 
-    public virtual void FireWeapon(Vector3 hitPosition)
+    public virtual void AttackWithWeapon(Vector3 hitPosition)
     {
-        if(_currentWeaponCooldown <= 0f)
-        {
-            TriggerWeaponCooldown();
-            OnWeaponFired.Invoke(hitPosition);
-        }
-        else
-            Debug.Log($"Weapon still in cooldown: {_currentWeaponCooldown}");
+        Debug.Log($"{name}: AttackWithWeapon not implemented for base Weapon class");
     }
 
-    public float GetProjectileDamage()
+    public float GetWeaponDamage()
     {
-        return projectileDamage;
+        return weaponDamage;
     }
 
     public float GetWeaponRange()
@@ -52,19 +32,9 @@ public class Weapon : MonoBehaviour
         return weaponRange;
     }
     
-    private void TriggerWeaponCooldown()
+    protected void TriggerWeaponCooldown()
     {
         _currentWeaponCooldown = weaponCooldown;
     }
 
-    private void CreateProjectileTrace(Vector3 hitPosition)
-    {
-        ProjectileTrace instanceRenderer = Instantiate(trace, barrelEnd.position, Quaternion.identity);
-        instanceRenderer.RenderBulletTrace(hitPosition);
-    }
-
-    private void PlaySmokeEffect(Vector3 hitPosition)
-    {
-        smokeEffect.Play();
-    }
 }
