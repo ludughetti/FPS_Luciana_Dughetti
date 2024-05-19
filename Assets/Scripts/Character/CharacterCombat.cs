@@ -4,32 +4,21 @@ public class CharacterCombat : MonoBehaviour
 {
     [SerializeField] protected LayerMask target;
     [SerializeField] protected Weapon weapon;
-    [SerializeField] 
 
     protected bool _isTargetInMeleeRange = false;
 
-    public void Shoot()
+    public void Attack()
     {
-        if(Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, weapon.GetWeaponRange(), target)) 
-        {
-            Debug.DrawRay(transform.position, transform.forward * hit.point.magnitude, Color.yellow, 2);
-            weapon.AttackWithWeapon(hit.point);
-            DamageEnemy(hit);
-        } 
-        else
-        {
-            Debug.DrawRay(transform.position, transform.forward * weapon.GetWeaponRange(), Color.white, 2);
-            weapon.AttackWithWeapon(transform.forward * weapon.GetWeaponRange());
-        }
+        bool wasTargetHit = weapon.Attack(target, out var targetHit);
+        Debug.Log($"{name}: Attack executed, was target hit? {wasTargetHit}");
+
+        if (wasTargetHit)
+            DamageEnemy(targetHit);
     }
 
-    public virtual void MeleeAttack()
+    private void DamageEnemy(GameObject targetHit)
     {
-        Debug.Log($"{name}: MeleeAttack() not implemented in CharacterCombat");
-    }
-
-    private void DamageEnemy(RaycastHit hit)
-    {
-        hit.transform.gameObject.GetComponent<CharacterHealth>().TakeDamage(weapon.GetWeaponDamage());
+        if (targetHit.TryGetComponent<CharacterHealth>(out var targetHealth))
+            targetHealth.TakeDamage(weapon.GetWeaponDamage());
     }
 }

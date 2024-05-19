@@ -17,9 +17,11 @@ public class Weapon : MonoBehaviour
             _currentWeaponCooldown -= Time.deltaTime;
     }
 
-    public virtual void AttackWithWeapon(Vector3 hitPosition)
+    public virtual bool Attack(LayerMask target, out GameObject targetHit)
     {
-        Debug.Log($"{name}: AttackWithWeapon not implemented for base Weapon class");
+        Debug.Log($"{name}: Attack not implemented for base Weapon class");
+        targetHit = null;
+        return false;
     }
 
     public float GetWeaponDamage()

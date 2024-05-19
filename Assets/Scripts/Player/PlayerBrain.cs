@@ -5,7 +5,7 @@ public class PlayerBrain : MonoBehaviour
     [SerializeField] private InputReader inputReader;
     [SerializeField] private PlayerController playerMovement;
     [SerializeField] private CameraController cameraController;
-    [SerializeField] private CharacterCombat characterCombat;
+    [SerializeField] private PlayerCombat playerCombat;
 
     private void OnEnable()
     {
@@ -40,6 +40,6 @@ public class PlayerBrain : MonoBehaviour
 
     private void HandleShootInput()
     {
-        characterCombat.Shoot();
+        playerCombat.Attack();
     }
 }

@@ -47,7 +47,6 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 groundCheckPosition = transform.position - new Vector3(0f, characterController.height / 2);
         _isGrounded = Physics.CheckSphere(groundCheckPosition, groundCheckRadius, groundMask);
-        Debug.Log($"isGrounded is {_isGrounded}");
     }
 
     private void ApplyPhysics()

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -10,17 +11,10 @@ public class CharacterHealth : MonoBehaviour
     public event Action OnDeath = delegate { };
 
     private float _health;
-    private string playerTag = "Player";
 
     private void OnEnable()
     {
         _health = maxHealth;
-        OnDeath += RemoveCharacterOnDeath;
-    }
-
-    private void OnDisable()
-    {
-        OnDeath -= RemoveCharacterOnDeath;
     }
 
     [ContextMenu("TakeDamage")]
@@ -48,13 +42,5 @@ public class CharacterHealth : MonoBehaviour
     public float GetMaxHealth()
     {
         return maxHealth;
-    }
-
-    private void RemoveCharacterOnDeath()
-    {
-        Debug.Log($"{name}: Character dead");
-
-        if(!playerTag.Equals(gameObject.tag))
-            Destroy(gameObject);
     }
 }

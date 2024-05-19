@@ -1,16 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyCombat : CharacterCombat
 {
-    public override void MeleeAttack()
+    private void OnTriggerEnter(Collider other)
     {
-        if (_isTargetInMeleeRange)
+        if (other.CompareTag("Player"))
         {
-
+            Debug.Log($"{name}: player found, attacking...");
+            Attack();
         }
     }
-
-
 }
