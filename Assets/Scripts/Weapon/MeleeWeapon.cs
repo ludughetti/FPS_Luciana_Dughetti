@@ -14,7 +14,8 @@ public class MeleeWeapon : Weapon
             return false;
         }
 
-        Debug.Log("Target hit");
+        _currentWeaponCooldown = weaponCooldown;
+
         if (Physics.SphereCast(attackArea.position, weaponRange, transform.forward, out var hit, weaponRange, target))
         {
             Debug.Log($"{name}: Enemy {hit.transform.gameObject.name} was hit");

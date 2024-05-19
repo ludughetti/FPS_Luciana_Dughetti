@@ -39,4 +39,8 @@ public class Weapon : MonoBehaviour
         _currentWeaponCooldown = weaponCooldown;
     }
 
+    public bool IsInCooldown()
+    {
+        return _currentWeaponCooldown > 0f;
+    }
 }

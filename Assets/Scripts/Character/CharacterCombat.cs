@@ -5,8 +5,6 @@ public class CharacterCombat : MonoBehaviour
     [SerializeField] protected LayerMask target;
     [SerializeField] protected Weapon weapon;
 
-    protected bool _isTargetInMeleeRange = false;
-
     public void Attack()
     {
         bool wasTargetHit = weapon.Attack(target, out var targetHit);
