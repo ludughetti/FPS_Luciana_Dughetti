@@ -13,19 +13,21 @@ public class HPBar : SliderBar
 
     private void OnEnable()
     {
-        characterHealth.OnDamageTaken += UpdateBarOnDamageReceived;
+        characterHealth.OnHeal += UpdateBarOnHealthChange;
+        characterHealth.OnDamageTaken += UpdateBarOnHealthChange;
         characterHealth.OnDeath += UpdateBarValueOnDeath;
     }
 
     private void OnDisable()
     {
-        characterHealth.OnDamageTaken -= UpdateBarOnDamageReceived;
+        characterHealth.OnHeal -= UpdateBarOnHealthChange;
+        characterHealth.OnDamageTaken -= UpdateBarOnHealthChange;
         characterHealth.OnDeath -= UpdateBarValueOnDeath;
     }
 
-    private void UpdateBarOnDamageReceived(float damageReceived)
+    private void UpdateBarOnHealthChange(float currentHP)
     {
-        _currentValue -= damageReceived;
+        _currentValue = currentHP;
     }
 
     private void UpdateBarValueOnDeath()

@@ -7,6 +7,7 @@ public class CharacterHealth : MonoBehaviour
 {
     [SerializeField] private float maxHealth = 100f;
 
+    public event Action<float> OnHeal = delegate { };
     public event Action<float> OnDamageTaken = delegate { };
     public event Action OnDeath = delegate { };
 
@@ -31,7 +32,7 @@ public class CharacterHealth : MonoBehaviour
         if (_health <= 0)
             OnDeath.Invoke();
         else
-            OnDamageTaken.Invoke(damage);
+            OnDamageTaken.Invoke(_health);
     }
 
     public float GetCurrentHealth()
@@ -42,5 +43,17 @@ public class CharacterHealth : MonoBehaviour
     public float GetMaxHealth()
     {
         return maxHealth;
+    }
+
+    public void Heal(float healAmount)
+    {
+        Debug.Log($"{name}: Healing player for {healAmount}");
+        _health += healAmount;
+        Debug.Log($"{name}: Player was healed, currentHP is {_health}");
+
+        if (_health >= maxHealth)
+            _health = maxHealth;
+
+        OnHeal.Invoke(_health);
     }
 }
