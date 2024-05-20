@@ -13,12 +13,6 @@ public class CameraController : MonoBehaviour
     private float _rotationX = 0f;
     private float _rotationY = 0f;
 
-    private void Start()
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-    }
-
     private void Update()
     {
         MoveCamera();

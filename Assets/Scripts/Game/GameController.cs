@@ -7,8 +7,15 @@ public class GameController : MonoBehaviour
 {
     [SerializeField] private int killCountToWin = 50;
     [SerializeField] private TMP_Text killCountText;
+    [SerializeField] private EndgameController endgameController;
 
     private int _killCount = 0;
+
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
 
     public void AddKillToCounter()
     {
@@ -17,12 +24,19 @@ public class GameController : MonoBehaviour
 
         if (_killCount == killCountToWin)
         {
-            Debug.Log($"{name}: Player won!");
+            TriggerEndgameScreen(true);
         }
     }
 
     private void UpdateKillCounterText()
     {
         killCountText.text = _killCount.ToString();
+    }
+
+    public void TriggerEndgameScreen(bool isVictory)
+    {
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
+        endgameController.ShowEndgameScreen(isVictory, _killCount);
     }
 }
