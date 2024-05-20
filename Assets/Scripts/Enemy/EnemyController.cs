@@ -4,13 +4,14 @@ using UnityEngine.AI;
 public class EnemyController : MonoBehaviour
 {
     [SerializeField] private NavMeshAgent agent;
-    [SerializeField] private Transform player;
 
+    private Transform _player;
+    private EnemySpawner _spawner;
     private bool _isRunning = true;
 
     void Update()
     {
-        agent.SetDestination(player.position);
+        agent.SetDestination(_player.position);
     }
 
     public bool IsRunning()
@@ -26,8 +27,19 @@ public class EnemyController : MonoBehaviour
 
     public void RemoveCharacterOnDeath()
     {
-        Debug.Log($"{name}: Character dead");
+        Debug.Log($"{name}: Enemy dead");
+        _spawner.RemoveActiveSpawn();
 
         Destroy(gameObject);
+    }
+
+    public void SetPlayer(Transform player)
+    {
+        _player = player;
+    }
+
+    public void SetSpawner(EnemySpawner spawner)
+    {
+        _spawner = spawner;
     }
 }
