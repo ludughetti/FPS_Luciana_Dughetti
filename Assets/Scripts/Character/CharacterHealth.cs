@@ -6,6 +6,7 @@ using UnityEngine;
 public class CharacterHealth : MonoBehaviour
 {
     [SerializeField] private float maxHealth = 100f;
+    [SerializeField] private ParticleSystem hitParticle;
 
     public event Action<float> OnHeal = delegate { };
     public event Action<float> OnDamageTaken = delegate { };
@@ -28,6 +29,9 @@ public class CharacterHealth : MonoBehaviour
     {
         Debug.Log($"{name}: {damage} damage received");
         _health -= damage;
+
+        if(hitParticle != null)
+            hitParticle.Play();
 
         if (_health <= 0)
             OnDeath.Invoke();
