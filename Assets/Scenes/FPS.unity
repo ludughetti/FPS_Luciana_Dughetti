@@ -17506,7 +17506,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e51313c347a726c40a4d3ebfff741d4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  killCountToWin: 10
+  killCountToWin: 50
   killCountText: {fileID: 315411038}
   endgameController: {fileID: 7733655972492598910}
   pauseController: {fileID: 73157427}
