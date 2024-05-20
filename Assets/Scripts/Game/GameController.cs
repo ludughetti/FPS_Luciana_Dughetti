@@ -1,18 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private int killCountToWin = 50;
+    [SerializeField] private TMP_Text killCountText;
+
+    private int _killCount = 0;
+
+    public void AddKillToCounter()
     {
-        
+        _killCount++;
+        UpdateKillCounterText();
+
+        if (_killCount == killCountToWin)
+        {
+            Debug.Log($"{name}: Player won!");
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void UpdateKillCounterText()
     {
-        
+        killCountText.text = _killCount.ToString();
     }
 }

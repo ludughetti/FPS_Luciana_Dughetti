@@ -8,6 +8,7 @@ public class HPBar : SliderBar
     {
         _currentValue = characterHealth.GetCurrentHealth();
         sliderBar.value = _currentValue;
+        sliderBar.maxValue = _currentValue;
     }
 
     private void OnEnable()
