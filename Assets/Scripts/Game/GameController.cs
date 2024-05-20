@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -8,8 +6,25 @@ public class GameController : MonoBehaviour
     [SerializeField] private int killCountToWin = 50;
     [SerializeField] private TMP_Text killCountText;
     [SerializeField] private EndgameController endgameController;
+    [SerializeField] private PauseController pauseController;
+    [SerializeField] private InputReader inputReader;
+    [SerializeField] private MainAudioManager mainAudioManager;
 
     private int _killCount = 0;
+
+    private void OnEnable()
+    {
+        inputReader.OnPauseInput += TogglePauseScreen;
+        inputReader.OnVolumeUpInput += IncreaseVolume;
+        inputReader.OnVolumeDownInput += DecreaseVolume;
+    }
+
+    private void OnDisable()
+    {
+        inputReader.OnPauseInput -= TogglePauseScreen;
+        inputReader.OnVolumeUpInput -= IncreaseVolume;
+        inputReader.OnVolumeDownInput -= DecreaseVolume;
+    }
 
     private void Start()
     {
@@ -38,5 +53,20 @@ public class GameController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
         endgameController.ShowEndgameScreen(isVictory, _killCount);
+    }
+
+    public void TogglePauseScreen()
+    {
+        pauseController.TogglePauseScreen();
+    }
+
+    private void IncreaseVolume()
+    {
+        mainAudioManager.VolumeUp();
+    }
+
+    private void DecreaseVolume()
+    {
+        mainAudioManager.VolumeDown();
     }
 }
